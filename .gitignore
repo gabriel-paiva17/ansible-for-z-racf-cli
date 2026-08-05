@@ -1,0 +1,39 @@
+# Ansible
+*.retry
+.ansible/
+*.log
+
+# Vault files (se não criptografados)
+*vault*.yml
+!example-vault.yml
+
+# Variáveis com senhas (se não usando vault)
+vars/secrets.yml
+vars/passwords.yml
+
+# Arquivos temporários
+*.tmp
+*.swp
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+logs/
+*.log
+
+# Made with Bob

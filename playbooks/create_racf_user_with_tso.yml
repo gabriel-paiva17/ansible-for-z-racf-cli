@@ -1,0 +1,26 @@
+- name: Criar usuário RACF
+  hosts: zos_hosts
+  gather_facts: false
+
+  vars_files:
+    - ../vars/user_config.yml
+    - ../vars/secrets.yml
+
+  tasks:
+    - name: Criar usuário RACF
+      ibm.ibm_zos_core.zos_tso_command:
+        commands:
+          - >-
+            ADDUSER {{ racf_user.name }}
+            NAME('{{ racf_user.display_name }}')
+            OWNER({{ racf_user.owner }})
+            PASSWORD({{ racf_user.password }})
+      register: user_creation_result
+
+    - name: Exibir resultado da criação do usuário
+      ansible.builtin.debug:
+        msg:
+          - "Usuário {{ racf_user.name }} criado com sucesso!"
+          - "Resultado: {{ user_creation_result }}"
+
+# Made with Bob

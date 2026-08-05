@@ -1,0 +1,32 @@
+---
+# Playbook para criar usuário RACF no z/OS
+- name: Criar usuário RACF
+  hosts: zos_hosts
+  gather_facts: false
+  
+  vars_files:
+    - ../vars/user_config.yml
+    - ../vars/secrets.yml
+  
+  tasks:
+    - name: Criar usuário RACF com configurações básicas
+      ibm.ibm_zos_core.zos_user:
+        name: "{{ racf_user.name }}"
+        state: create
+        profile_type: user
+        
+        # Informações básicas do usuário
+        base_segment:
+          display_name: "{{ racf_user.display_name }}"
+          owner: "{{ racf_user.owner }}"
+      register: user_creation_result
+    
+    - name: Exibir resultado da criação do usuário
+      ansible.builtin.debug:
+        msg: 
+          - "Usuário {{ racf_user.name }} criado com sucesso!"
+          - "Status: {{ user_creation_result.msg }}"
+          - "Comando executado: {{ user_creation_result.cmd }}"
+      when: user_creation_result.changed
+    
+# Made with Bob

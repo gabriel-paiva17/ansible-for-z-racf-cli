@@ -1,0 +1,16 @@
+---
+# Configuração do usuário RACF a ser criado
+racf_user:
+  # Nome do usuário (máximo 8 caracteres)
+  name: novo2
+
+  # Nome completo do usuário (máximo 20 caracteres)
+  display_name: "New User Name 4"
+
+  # Proprietário do perfil do usuário
+  owner: zosadmn
+
+  # Senha carregada do vault (vars/secrets.yml)
+  password: "{{ racf_new_user_password }}"
+
+# Made with Bob
