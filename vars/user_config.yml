@@ -2,10 +2,10 @@
 # Configuração do usuário RACF a ser criado
 racf_user:
   # Nome do usuário (máximo 8 caracteres)
-  name: novo2
+  name: victor
 
   # Nome completo do usuário (máximo 20 caracteres)
-  display_name: "New User Name 4"
+  display_name: "victor"
 
   # Proprietário do perfil do usuário
   owner: zosadmn

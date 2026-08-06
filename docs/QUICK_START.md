@@ -31,10 +31,10 @@ Escolha também o método de autenticação SSH — deixe **um ativo** e o outro
 
 ```yaml
 # Opção 1: certificado (chave privada)
-ansible_ssh_private_key_file: /caminho/para/chave.pem  # ← Altere aqui
+# ansible_ssh_private_key_file: /caminho/para/chave.pem  # ← Altere aqui
 
 # Opção 2: senha RACF (via vault)
-# ansible_ssh_pass: "{{ racf_ssh_password }}"
+ansible_ssh_pass: "{{ racf_ssh_password }}"
 ```
 
 ### 2️⃣ Configurar as Variáveis do Usuário
@@ -91,6 +91,8 @@ ansible-vault rekey vars/secrets.yml
 ```
 
 ### 4️⃣ Teste de Conectividade
+
+> Não está funcionando depois de implementar logon com senha / vault.
 
 ```bash
 ansible zos_hosts -i inventory/hosts.yml -m ping --ask-vault-pass
